@@ -32,7 +32,6 @@ for f1 in files:
   seg_test.append(img)
   
 seg_test = np.array(seg_test) #Converting the list into a tensor
-np.save('seg_test.ipynb', seg_test)
 
 
 #Segmented Train Images
@@ -46,7 +45,6 @@ for f1 in files:
   seg_train.append(img)
   
 seg_train = np.array(seg_train) #Converting the list into a tensor
-np.save('seg_train.ipynb', seg_train)
 
 
 #Segmented Validation Images
@@ -60,7 +58,6 @@ for f1 in files:
   seg_validate.append(img)
   
 seg_validate = np.array(seg_validate) #Converting the list into a tensor
-np.save('seg_validate.ipynb', seg_validate)
 
 
 #Test Images
@@ -77,7 +74,6 @@ test = np.array(test) #Converting the list into a tensor
 
 test.shape #(544, 256, 256, 3)
 
-np.save('test.ipynb', test)
 
 #Train Images
 data_path = os.path.join(img_train_dir, '*g')
@@ -96,8 +92,7 @@ train = np.array(train) #Converting the list into a tensor
 
 train.shape #(9664, 256, 256, 3)
 
-#Saving the train variable
-np.save('train.ipynb', train)
+
 
 #Validate Images
 data_path = os.path.join(img_validate_dir, '*g')
@@ -111,7 +106,11 @@ for f1 in files:
   
 validate = np.array(validate) #Converting the list into a tensor
 
-np.save('validate.ipynb', validate)
 
-validate = np.load('validate.ipynb.npy')
-validate.shape
+#Saving the data
+np.save('seg_test.ipynb', seg_test)
+np.save('seg_train.ipynb', seg_train)
+np.save('seg_validate.ipynb', seg_validate)
+np.save('test.ipynb', test)
+np.save('train.ipynb', train)
+np.save('validate.ipynb', validate)
