@@ -19,8 +19,6 @@ with ZipFile(file_name, 'r') as zip:
   zip.extractall("/content/drive/My Drive/OASIS_dataset_tensorflow")
   print("Done")
 
-
-
 """#Importing the images and storing them in variables"""
 
 #Directories of all images
@@ -39,7 +37,6 @@ files = glob.glob(data_path)
 seg_test = [] #Variables where all the seg_test images are saved
 
 for f1 in files:
-  print(len(seg_test))
   img = cv2.imread(f1)
   seg_test.append(img)
   
@@ -50,18 +47,7 @@ seg_test = np.array(seg_test) #Converting the list into a tensor
 seg_test.shape #(544, 256, 256, 3)  cv2 grayscale
 plt.imshow(seg_test[11,:,:,:])
 
-#from skimage import color
-
-#seg_test = color.rgb2gray(seg_test)
-#seg_test.shape
-#plt.imshow(seg_test[11,:,:])
-
 np.save('seg_test.ipynb', seg_test)
-
-#np.load('seg_test.ipynb.npy').shape
-
-seg_test = np.load('seg_test.ipynb.npy')
-
 seg_test.shape
 
 #Segmented Train Images
@@ -71,7 +57,6 @@ files = glob.glob(data_path)
 seg_train = [] #Variables where all the seg_train images are saved
 
 for f1 in files:
-  print(len(seg_train))
   img = cv2.imread(f1)
   seg_train.append(img)
   
@@ -84,9 +69,6 @@ plt.imshow(seg_test[1,:,:,:])
 
 np.save('seg_train.ipynb', seg_train)
 
-seg_train = np.load('seg_train.ipynb.npy')
-seg_train.shape
-
 #Segmented Validation Images
 data_path = os.path.join(img_seg_validate_dir, '*g')
 files = glob.glob(data_path)
@@ -94,7 +76,6 @@ files = glob.glob(data_path)
 seg_validate = [] #Variables where all the seg_validate images are saved
 
 for f1 in files:
-  print(len(seg_validate))
   img = cv2.imread(f1)
   seg_validate.append(img)
   
@@ -104,8 +85,6 @@ seg_validate.shape #(1120, 256, 256, 3)
 plt.imshow(seg_validate[1,:,:,:])
 
 np.save('seg_validate.ipynb', seg_validate)
-
-seg_validate = np.load('seg_validate.ipynb.npy')
 seg_validate.shape
 
 #Test Images
@@ -115,7 +94,6 @@ files = glob.glob(data_path)
 test = [] #Variables where all the test images are saved
 
 for f1 in files:
-  print(len(test))
   img = cv2.imread(f1)
   test.append(img)
   
@@ -124,9 +102,6 @@ test = np.array(test) #Converting the list into a tensor
 test.shape #(544, 256, 256, 3)
 
 np.save('test.ipynb', test)
-
-test = np.load('test.ipynb.npy')
-test.shape
 
 #Train Images
 data_path = os.path.join(img_train_dir, '*g')
@@ -137,21 +112,14 @@ train = [] #Variables where all the train images are saved
 i = 0
 
 for f1 in files:
-  #if i<3100:
-    print(len(train))
     img = cv2.imread(f1)
-    train.append(img)
-    #i=i+1
-  
+    train.append(img)  
   
 train = np.array(train) #Converting the list into a tensor
 
 train.shape #(9664, 256, 256, 3)
 
 np.save('train.ipynb', train)
-
-train = np.load('train.ipynb.npy')
-train.shape
 
 plt.imshow(train[199,:,:,:])
 
@@ -162,15 +130,12 @@ files = glob.glob(data_path)
 validate = [] #Variables where all the test images are saved
 
 for f1 in files:
-  print(len(validate))
   img = cv2.imread(f1)
   validate.append(img)
   
 validate = np.array(validate) #Converting the list into a tensor
 
 np.save('validate.ipynb', validate)
-
-validate = np.load('validate.ipynb.npy')
 validate.shape
 
 """#Visualizing the data"""
@@ -183,9 +148,9 @@ print("Test Images shape:", test.shape)
 print("Train Images shape:", train.shape)
 print("Validate Images shape:", validate.shape)
 
-seg_test[1,100:200,100:200,1]
+print("Total number of masks in the segmented image is: ", np.unique(seg_test))
 
-"""#Compiling the Model"""
+
 
 #Data Preprocessing 
 #Pixel values of Images are in the range 0-255 
@@ -198,25 +163,6 @@ test = test.astype('float32')/255
 train = train.astype('float32')/255
 validate = validate.astype('float32')/255
 
-#Saving the data
-
-np.save('seg_test.ipynb', seg_test)
-np.save('seg_train.ipynb', seg_train)
-np.save('seg_validate.ipynb', seg_validate)
-np.save('test.ipynb', test)
-np.save('train.ipynb', train)
-np.save('validate.ipynb', validate)
-
-#Loading the data  (session is crashing)
-
-seg_test = np.load('seg_test.ipynb.npy')
-seg_train = np.load('seg_train.ipynb.npy')
-seg_validate = np.load('seg_validate.ipynb.npy')
-test = np.load('test.ipynb.npy')
-train = np.load('train.ipynb.npy')
-validate = np.load('validate.ipynb.npy')
-
-seg_test[1,100:200,100:200]
 
 #Converting 3 channels to 1 channel
 
@@ -239,44 +185,15 @@ print("Validate Images shape:", validate.shape)
 seg_test[1,100:200,100:200]
 plt.imshow(seg_test[1,:,:])
 
-#Saving the data
-
-np.save('seg_test.ipynb', seg_test)
-np.save('seg_train.ipynb', seg_train)
-np.save('seg_validate.ipynb', seg_validate)
-np.save('test.ipynb', test)
-np.save('train.ipynb', train)
-np.save('validate.ipynb', validate)
 
 from keras.utils import to_categorical
 
 seg_test = to_categorical(seg_test)
-#seg_train = to_categorical(seg_train)
+seg_train = to_categorical(seg_train)
 seg_validate = to_categorical(seg_validate)
 
-#Saving the Data
-
-np.save('seg_test.ipynb', seg_test)
-#np.save('seg_train.ipynb', seg_train)
-np.save('seg_validate.ipynb', seg_validate)
-
-#Loading the data  (session is crashing)
-
-seg_test = np.load('seg_test.ipynb.npy')
-seg_train = np.load('seg_train.ipynb.npy')
-seg_validate = np.load('seg_validate.ipynb.npy')
-test = np.load('test.ipynb.npy')
-train = np.load('train.ipynb.npy')
-validate = np.load('validate.ipynb.npy')
-
-seg_test.shape
 plt.imshow(seg_test[1,:,:,3])
 
-from keras.utils import to_categorical
-
-seg_train = to_categorical(seg_train)
-
-np.save('seg_train.ipynb', seg_train)
 
 #Expanding the dimension
 
@@ -288,15 +205,6 @@ np.save('test.ipynb', test)
 np.save('train.ipynb', train)
 np.save('validate.ipynb', validate)
 
-#Loading the data  (session is crashing)
-
-seg_test = np.load('seg_test.ipynb.npy')
-seg_train = np.load('seg_train.ipynb.npy')
-seg_validate = np.load('seg_validate.ipynb.npy')
-test = np.load('test.ipynb.npy')
-train = np.load('train.ipynb.npy')
-validate = np.load('validate.ipynb.npy')
-
 #Shape of the tensors
 print("Segmented Test Images shape:", seg_test.shape)
 print("Segmented Train Images shape:", seg_train.shape)
@@ -305,7 +213,6 @@ print("Test Images shape:", test.shape)
 print("Train Images shape:", train.shape)
 print("Validate Images shape:", validate.shape)
 
-plt.imshow(test[9,:,:,0])
 
 """#Building the UNET Model (Functional API)"""
 
@@ -367,12 +274,8 @@ model = Model(input = inputs, output = conv3)
 
 model.summary()
 
-#model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['mean_squared_error'])
-
-#model.compile(optimizer = 'Adam', loss='binary_crossentropy', metrics=['mean_squared_error'])
 model.compile(optimizer = 'Adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-#history = model.fit(train, seg_train, epochs=1, batch_size=128, validation_data=(validate, seg_validate))
 history = model.fit(train, seg_train, epochs=11, batch_size=128, validation_data=(validate, seg_validate))
 
 test_loss, test_acc = model.evaluate(test, seg_test)
