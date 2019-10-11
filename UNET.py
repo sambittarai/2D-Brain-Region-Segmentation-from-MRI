@@ -57,3 +57,6 @@ conv3 = Conv2D(4, 1, activation='softmax')(conv2)
 model = Model(input = inputs, output = conv3)
 
 model.summary()
+
+
+model.save('UNETmodel.h5')
