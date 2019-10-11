@@ -51,3 +51,11 @@ print("Segmented Validate Images shape:", seg_validate.shape)
 print("Test Images shape:", test.shape)
 print("Train Images shape:", train.shape)
 print("Validate Images shape:", validate.shape)
+
+#Saving the data
+np.save('seg_test.ipynb', seg_test)
+np.save('seg_train.ipynb', seg_train)
+np.save('seg_validate.ipynb', seg_validate)
+np.save('test.ipynb', test)
+np.save('train.ipynb', train)
+np.save('validate.ipynb', validate)
