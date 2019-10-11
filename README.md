@@ -5,7 +5,7 @@
 **MRI Image and it's corresponding Segmented Image**      
 ![](Training_Images/MRI_Img.png)      ![](Training_Images/Segmented_Img.png)
 
-**Masks associated with the Segmented Images**
+**One hot encoding of the Masks**
 
 ![](Segmented_Masks/Mask1.png)  ![](Segmented_Masks/Mask2.png)  ![](Segmented_Masks/Mask3.png)  ![](Segmented_Masks/Mask4.png)
 
