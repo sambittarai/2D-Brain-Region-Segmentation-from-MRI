@@ -1,5 +1,7 @@
 # UNET_Segmentation
 
+Segmentation of MRI images using UNET
+
 **Segmentation of MRI Images**
 
 **MRI Image and it's corresponding Segmented Image**      
