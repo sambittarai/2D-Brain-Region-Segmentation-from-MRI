@@ -4,10 +4,6 @@ from zipfile import ZipFile
 
 file_name = "/content/drive/My Drive/OASIS_dataset_tensorflow/keras_png_slices_data.zip"
 
-with ZipFile(file_name, 'r') as zip:
-  zip.extractall("/content/drive/My Drive/OASIS_dataset_tensorflow")
-  print("Done")
-
 
 
 """#Importing the images and storing them in variables"""

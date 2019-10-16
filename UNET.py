@@ -1,5 +1,6 @@
 """#Building the UNET Model (Functional API)"""
-
+import tensorflow as tf 
+from tensorflow import keras
 import skimage.io as io
 import skimage.transform as trans
 from keras.models import *
@@ -59,4 +60,4 @@ model = Model(input = inputs, output = conv3)
 model.summary()
 
 
-model.save('UNETmodel.h5')
+#model.save('UNETmodel.h5')
