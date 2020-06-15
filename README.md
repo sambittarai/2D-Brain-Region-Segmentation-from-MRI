@@ -23,13 +23,9 @@ UNET is an Autoencoder with skip connections.
 **Segmented Image Prediction**
 
 
-**Prediction when accuracy of network is 96%**
+**Prediction**
 
 ![](Predicted_Images/Prediction_96%25.png)
-
-**Prediction when accuracy of network is 70%**
-
-![](Predicted_Images/Prediction_70%25.png)
 
 **Actual Segmented Image**
 
