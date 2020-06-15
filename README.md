@@ -2,6 +2,10 @@
 
 Segmentation of MRI images using UNET
 
+## Requirements:
+  * Python >= 3.5
+  * Keras
+
 **Segmentation of MRI Images**
 
 **MRI Image and it's corresponding Segmented Image**      
