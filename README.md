@@ -6,7 +6,7 @@ Segmentation of MRI images using UNET
   * Python >= 3.5
   * Keras
 
-**Segmentation of MRI Images**
+## Segmentation of MRI Images
 
 **MRI Image and it's corresponding Segmented Image**      
 ![](Training_Images/MRI_Img.png)      ![](Training_Images/Segmented_Img.png)
